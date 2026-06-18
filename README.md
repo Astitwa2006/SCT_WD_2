@@ -11,7 +11,7 @@ A fully functional calculator featuring a stark brutalist aesthetic, keyboard su
 - **Responsive:** Scales perfectly on desktop and mobile devices.
 
 ## Live Demo
-👉 **[Insert Live Deployment Link Here]**
+👉 **https://sct-wd-2-f6o9wf9el-astitwa-s-projects.vercel.app**
 
 ## Technologies Used
 - HTML5
