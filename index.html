@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SkillCraft Technology – Task 02: Premium Calculator Web Application with full keyboard support and sleek dark UI." />
+  <meta name="author" content="SkillCraft Technology" />
+  <title>Calculator | SCT_WD_2 – SkillCraft Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="calc-header" role="banner">
+      <div class="brand-tag" id="brand-tag">SkillCraft Technology</div>
+      <h1 class="calc-title" id="calc-title">
+        <span class="gradient-text">Calculator</span>
+      </h1>
+      <p class="calc-subtitle" id="calc-subtitle">SCT_WD_2 &mdash; Web Development Internship</p>
+    </header>
+
+    <!-- Calculator Card -->
+    <main class="calc-container" id="calc-container" role="main">
+      <div class="calculator" id="calculator" aria-label="Calculator">
+
+        <!-- Display -->
+        <section class="display" id="display-section" aria-label="Calculator display">
+          <div class="display-inner" id="display-inner">
+            <div class="expression-line" id="expression-line" aria-live="polite" aria-label="Expression">0</div>
+            <div class="result-line" id="result-line" aria-live="polite" aria-label="Result"></div>
+          </div>
+          <!-- Display corner accents -->
+          <div class="display-accent top-left"  aria-hidden="true"></div>
+          <div class="display-accent top-right" aria-hidden="true"></div>
+        </section>
+
+        <!-- Button Grid -->
+        <div class="btn-grid" id="btn-grid" role="group" aria-label="Calculator buttons">
+
+          <!-- Row 1 -->
+          <button class="btn btn-fn btn-clear"   id="btn-ac"      data-action="clear"       aria-label="All Clear">AC</button>
+          <button class="btn btn-fn btn-toggle"  id="btn-toggle"  data-action="toggle"      aria-label="Toggle sign">+/−</button>
+          <button class="btn btn-fn btn-percent" id="btn-percent" data-action="percent"     aria-label="Percent">%</button>
+          <button class="btn btn-op"             id="btn-divide"  data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+
+          <!-- Row 2 -->
+          <button class="btn btn-num" id="btn-7" data-action="digit" data-value="7" aria-label="7">7</button>
+          <button class="btn btn-num" id="btn-8" data-action="digit" data-value="8" aria-label="8">8</button>
+          <button class="btn btn-num" id="btn-9" data-action="digit" data-value="9" aria-label="9">9</button>
+          <button class="btn btn-op"  id="btn-multiply" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+          <!-- Row 3 -->
+          <button class="btn btn-num" id="btn-4" data-action="digit" data-value="4" aria-label="4">4</button>
+          <button class="btn btn-num" id="btn-5" data-action="digit" data-value="5" aria-label="5">5</button>
+          <button class="btn btn-num" id="btn-6" data-action="digit" data-value="6" aria-label="6">6</button>
+          <button class="btn btn-op"  id="btn-subtract" data-action="operator" data-value="−" aria-label="Subtract">−</button>
+
+          <!-- Row 4 -->
+          <button class="btn btn-num" id="btn-1" data-action="digit" data-value="1" aria-label="1">1</button>
+          <button class="btn btn-num" id="btn-2" data-action="digit" data-value="2" aria-label="2">2</button>
+          <button class="btn btn-num" id="btn-3" data-action="digit" data-value="3" aria-label="3">3</button>
+          <button class="btn btn-op"  id="btn-add" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+          <!-- Row 5 -->
+          <button class="btn btn-num btn-zero"    id="btn-0"       data-action="digit"    data-value="0"  aria-label="0">0</button>
+          <button class="btn btn-num"             id="btn-dot"     data-action="decimal"                  aria-label="Decimal point">.</button>
+          <button class="btn btn-fn  btn-bksp"   id="btn-bksp"    data-action="backspace"                aria-label="Backspace">⌫</button>
+          <button class="btn btn-eq"             id="btn-equals"  data-action="equals"                   aria-label="Equals">=</button>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Keyboard hint footer -->
+    <footer class="calc-footer" id="calc-footer" role="contentinfo">
+      <div class="keyboard-hint" id="keyboard-hint">
+        <span class="hint-icon" aria-hidden="true">⌨</span>
+        <span>Keyboard shortcuts supported &mdash;
+          <kbd>0–9</kbd> digits &nbsp;·&nbsp;
+          <kbd>+ − × ÷</kbd> operators &nbsp;·&nbsp;
+          <kbd>Enter</kbd> equals &nbsp;·&nbsp;
+          <kbd>Backspace</kbd> delete &nbsp;·&nbsp;
+          <kbd>Esc</kbd> clear
+        </span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

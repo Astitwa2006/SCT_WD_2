@@ -1,0 +1,365 @@
+/* ============================================================
+   SCT_WD_2 — Calculator | Brutalist "Acid Lime on Black" Redesign
+   style.css
+   ============================================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --bg-deep: #0a0a0a;
+  --bg-elevated: #111;
+  
+  --accent: #c8ff2e;
+  --accent-hover: #b0e61d;
+  
+  --border-color: #2a2a2a;
+  --border-width: 2px;
+  
+  --text-primary: #ffffff;
+  --text-dim: #888888;
+  --text-inv: #000000;
+  --text-error: #ff3333;
+
+  --font-ui: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-head: 'Syne', sans-serif;
+
+  --radius: 0px;
+  --transition-fast: 0.1s linear;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--bg-deep);
+  background-image: 
+    linear-gradient(rgba(200, 255, 46, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 255, 46, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---------- Page Wrapper ---------- */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 16px 24px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ---------- Header ---------- */
+.calc-header {
+  text-align: center;
+}
+
+.brand-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-inv);
+  background: var(--accent);
+  border: var(--border-width) solid var(--accent);
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  box-shadow: 2px 2px 0px var(--text-dim);
+}
+
+.calc-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.gradient-text {
+  color: var(--text-primary);
+}
+
+.calc-subtitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Calculator Container ---------- */
+.calc-container {
+  width: 100%;
+}
+
+.calculator {
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 8px 8px 0px 0px var(--border-color);
+}
+
+/* ---------- Display ---------- */
+.display {
+  background: #000;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.display-accent {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+}
+.display-accent.top-left  { top: 0; left: 0; clip-path: polygon(0 0, 100% 0, 0 100%); }
+.display-accent.top-right { top: 0; right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+
+.display-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.expression-line {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+  word-break: break-all;
+  text-align: right;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expression-line.small {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+}
+
+.result-line {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--text-dim);
+  text-align: right;
+  min-height: 1.4em;
+  letter-spacing: 0.05em;
+}
+
+.result-line.error {
+  color: var(--text-error);
+}
+.calculator.error-state .expression-line {
+  color: var(--text-error);
+}
+
+/* ---------- Button Grid ---------- */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ---------- Base Button ---------- */
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  height: 64px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+  outline: none;
+  user-select: none;
+  box-shadow: 4px 4px 0px 0px var(--border-color);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.btn:active, .btn.key-active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--border-color);
+}
+
+/* ---------- Number Buttons ---------- */
+.btn-num {
+  background: var(--bg-elevated);
+}
+
+.btn-num:hover {
+  background: var(--text-primary);
+  color: var(--text-inv);
+  border-color: var(--text-primary);
+}
+
+.btn-zero {
+  grid-column: span 1;
+}
+
+/* ---------- Operator Buttons ---------- */
+.btn-op {
+  background: var(--accent);
+  color: var(--text-inv);
+  border-color: var(--accent);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
+
+.btn-op:hover {
+  background: var(--accent-hover);
+}
+
+.btn-op.active-op {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--text-inv);
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--border-color);
+}
+
+/* ---------- Function Buttons (AC, +/−, %) ---------- */
+.btn-fn {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.btn-fn:hover {
+  background: #333;
+}
+
+/* ---------- Clear / Backspace ---------- */
+.btn-clear, .btn-bksp {
+  color: var(--text-error);
+  border-color: #441111;
+}
+.btn-clear:hover, .btn-bksp:hover {
+  background: var(--text-error);
+  color: var(--text-inv);
+  border-color: var(--text-error);
+}
+
+/* ---------- Equals Button ---------- */
+.btn-eq {
+  background: var(--text-primary);
+  color: var(--text-inv);
+  border-color: var(--text-primary);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  box-shadow: 4px 4px 0px 0px var(--accent);
+}
+
+.btn-eq:hover {
+  background: var(--bg-elevated);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.btn-eq:active, .btn-eq.key-active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--accent);
+}
+
+/* ---------- Footer ---------- */
+.calc-footer {
+  margin-top: 16px;
+}
+
+.keyboard-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  flex-wrap: wrap;
+  line-height: 1.8;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.hint-icon {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+kbd {
+  display: inline-block;
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border-color);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* ---------- Number Flip Animation ---------- */
+@keyframes num-pop {
+  0%   { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+.expression-line.pop {
+  animation: num-pop 0.1s ease-out both;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 400px) {
+  .page-wrapper { padding: 16px 10px; gap: 24px; }
+  .calculator { padding: 16px; gap: 16px; box-shadow: 6px 6px 0px 0px var(--border-color); }
+  .btn-grid { gap: 10px; }
+  .btn { height: 56px; box-shadow: 3px 3px 0px 0px var(--border-color); }
+  .btn:active, .btn.key-active { transform: translate(3px, 3px); box-shadow: 0 0 0 0; }
+  .btn-eq { box-shadow: 3px 3px 0px 0px var(--accent); }
+  .btn-eq:active, .btn-eq.key-active { transform: translate(3px, 3px); box-shadow: 0 0 0 0; }
+  .display { min-height: 100px; padding: 16px; }
+}
